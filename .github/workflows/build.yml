@@ -45,6 +45,3 @@ jobs:
           push: true
           tags: docker.io/boobesh2005/fluxcd-gitops-image-automation:${{ steps.tag.outputs.tag }}
 
-
-**Stop there and tell me whether the workflow succeeded.** Next, we'll update the Flux ImagePolicy to recognize only these new tags.
-```
