@@ -21,16 +21,16 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
+      - name: Generate 7-character image tag
+        id: tag
+        shell: bash
+        run: |
+          TAG="v$(printf '%06x' "$GITHUB_RUN_NUMBER")"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Image tag: $TAG"
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
-      - name: Generate Docker metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: docker.io/boobesh2005/fluxcd-gitops-image-automation
-          tags: |
-            type=sha,format=short,prefix=
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -43,6 +43,8 @@ jobs:
         with:
           context: ./app/base
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: docker.io/boobesh2005/fluxcd-gitops-image-automation:${{ steps.tag.outputs.tag }}
 
+
+**Stop there and tell me whether the workflow succeeded.** Next, we'll update the Flux ImagePolicy to recognize only these new tags.
+```
