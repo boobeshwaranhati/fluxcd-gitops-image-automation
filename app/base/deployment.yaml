@@ -1,4 +1,4 @@
-﻿apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fluxcd-demo
@@ -15,7 +15,6 @@ spec:
     spec:
       containers:
         - name: website
-          image: docker.io/boobesh2005/fluxcd-gitops-image-automation:20261026071245-2919474 # {"$imagepolicy": "flux-system:demo-policy"}
+          image: docker.io/boobesh2005/fluxcd-gitops-image-automation:20261026073952-b33639a # {"$imagepolicy": "flux-system:demo-policy"}
           ports:
             - containerPort: 80
-
