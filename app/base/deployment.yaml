@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: website
-          image: docker.io/boobesh2005/fluxcd-gitops-image-automation:20261026075221-c7b7e5f # {"$imagepolicy": "flux-system:demo-policy"}
+          image: docker.io/boobesh2005/fluxcd-gitops-image-automation:b40824d # {"$imagepolicy": "flux-system:demo-policy"}
           ports:
             - containerPort: 80
