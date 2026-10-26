@@ -7,7 +7,7 @@ spec:
   imageRepositoryRef:
     name: demo-image
   filterTags:
-    pattern: '^[a-f0-9]{7}$'
+    pattern: '^v[0-9a-f]{6}$'
   policy:
     alphabetical:
       order: asc
