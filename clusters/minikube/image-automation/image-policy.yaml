@@ -1,4 +1,4 @@
-apiVersion: image.toolkit.fluxcd.io/v1
+﻿apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: demo-policy
@@ -6,6 +6,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: demo-image
+  filterTags:
+    pattern: '^(?P<ts>[0-9]{14})-[a-f0-9]{7}$'
+    extract: '$ts'
   policy:
-    alphabetical:
+    numerical:
       order: asc
