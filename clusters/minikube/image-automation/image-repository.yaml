@@ -1,0 +1,8 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: demo-image
+  namespace: flux-system
+spec:
+  image: docker.io/boobesh2005/fluxcd-gitops-image-automation
+  interval: 1m
