@@ -46,3 +46,21 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Update deployment image
+        shell: bash
+        env:
+          IMAGE_TAG: ${{ steps.meta.outputs.version }}
+        run: |
+          sed -i -E \
+            "s|(image: docker.io/boobesh2005/fluxcd-gitops-image-automation:)[a-f0-9]{7}|\1${IMAGE_TAG}|" \
+            app/base/deployment.yaml
+
+      - name: Commit deployment update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/base/deployment.yaml
+          if ! git diff --cached --quiet; then
+            git commit -m "Update deployment image to ${{ steps.meta.outputs.version }}"
+            git push
+          fi
