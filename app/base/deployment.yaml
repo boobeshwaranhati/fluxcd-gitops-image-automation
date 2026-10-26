@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluxcd-demo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fluxcd-demo
+  template:
+    metadata:
+      labels:
+        app: fluxcd-demo
+    spec:
+      containers:
+        - name: website
+          image: boobesh2005/fluxcd-gitops-image-automation:1.0.0 # {"$imagepolicy": "flux-system:demo-policy"}
+          ports:
+            - containerPort: 80

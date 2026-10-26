@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2f3b2f" />
+  <title>Little Fern Café | Coffee, Comfort & Good Company</title>
+  <style>
+    :root {
+      --forest: #2f3b2f;
+      --cream: #f7f2e8;
+      --sand: #e7dcc9;
+      --terracotta: #bd6b4b;
+      --ink: #262a24;
+      --muted: #6d7167;
+      --white: #fffdf8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      background: var(--forest);
+      color: #f9f4e9;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: .82rem;
+      letter-spacing: .08em;
+    }
+    header {
+      max-width: 1180px;
+      margin: auto;
+      padding: 20px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { font-family: Georgia, serif; font-size: 1.65rem; font-weight: 700; }
+    .brand span { color: var(--terracotta); }
+    nav { display: flex; gap: 28px; align-items: center; font-size: .94rem; }
+    nav a:hover { color: var(--terracotta); }
+    .nav-cta, .button {
+      display: inline-block;
+      background: var(--terracotta);
+      color: white;
+      padding: 12px 21px;
+      border-radius: 999px;
+      font-weight: 650;
+      transition: transform .2s, background .2s;
+    }
+    .nav-cta:hover, .button:hover { background: #a95638; transform: translateY(-2px); }
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 6% 70px;
+      display: grid;
+      grid-template-columns: 1fr 1.02fr;
+      gap: 54px;
+      align-items: center;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .78rem;
+      font-weight: 750;
+      color: var(--terracotta);
+    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.12; }
+    h1 { font-size: clamp(3rem, 6vw, 5.4rem); margin: 16px 0 22px; letter-spacing: -.04em; }
+    h1 em { color: var(--terracotta); font-weight: 500; }
+    .hero p { max-width: 490px; color: var(--muted); font-size: 1.08rem; margin-bottom: 28px; }
+    .hero-links { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+    .text-link { font-weight: 700; border-bottom: 1px solid var(--forest); padding-bottom: 3px; }
+    .hero-image {
+      min-height: 500px;
+      border-radius: 48% 48% 18px 18px;
+      overflow: hidden;
+      position: relative;
+      background: #d7c2a7;
+    }
+    .hero-image img { width: 100%; height: 100%; min-height: 500px; object-fit: cover; display: block; }
+    .image-note {
+      position: absolute; bottom: 22px; left: 22px;
+      background: var(--white); border-radius: 14px; padding: 13px 17px;
+      box-shadow: 0 8px 28px #0002; font-size: .9rem;
+    }
+    .image-note strong { display: block; font-family: Georgia, serif; font-size: 1.05rem; }
+    .intro {
+      background: var(--sand);
+      padding: 65px 6%;
+      text-align: center;
+    }
+    .intro h2 { font-size: clamp(2.1rem, 4vw, 3.2rem); margin: 12px auto; max-width: 700px; }
+    .intro p { color: #66685d; max-width: 630px; margin: 16px auto 0; }
+    .section { max-width: 1180px; margin: auto; padding: 78px 6%; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+    .section-heading h2 { font-size: clamp(2.2rem, 4vw, 3.3rem); margin: 8px 0 0; }
+    .section-heading p { max-width: 390px; color: var(--muted); margin: 0; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .menu-card { background: var(--white); border-radius: 18px; overflow: hidden; }
+    .menu-card img { width: 100%; height: 220px; display: block; object-fit: cover; }
+    .menu-content { padding: 20px; }
+    .menu-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    .menu-title h3 { margin: 0; font-size: 1.35rem; }
+    .price { color: var(--terracotta); font-weight: 800; white-space: nowrap; }
+    .menu-content p { margin: 9px 0 0; color: var(--muted); font-size: .94rem; }
+    .feature {
+      background: var(--forest); color: #f8f2e8;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 45px;
+      padding: 64px max(6%, calc((100% - 1060px)/2));
+    }
+    .feature img { width: 100%; height: 360px; object-fit: cover; border-radius: 18px; }
+    .feature h2 { font-size: clamp(2.4rem, 4vw, 3.7rem); margin: 13px 0 20px; }
+    .feature p { color: #d8ddcf; }
+    .feature .eyebrow { color: #e8a487; }
+    .feature .button { background: #e8a487; color: #292d25; margin-top: 10px; }
+    .visit { text-align: center; padding: 76px 6%; }
+    .visit h2 { font-size: clamp(2.3rem, 4vw, 3.4rem); margin: 10px 0 14px; }
+    .visit p { color: var(--muted); margin: 0 auto 25px; max-width: 540px; }
+    footer { background: #222a21; color: #e8e4d9; padding: 26px 6%; }
+    .footer-inner { max-width: 1060px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+    footer small { color: #c2c5b8; }
+    @media (max-width: 780px) {
+      header { padding: 18px 5%; flex-wrap: wrap; }
+      nav { width: 100%; justify-content: space-between; gap: 12px; font-size: .88rem; }
+      .nav-cta { padding: 9px 14px; }
+      .hero { grid-template-columns: 1fr; padding: 22px 5% 50px; gap: 32px; }
+      .hero-image, .hero-image img { min-height: 360px; }
+      .section { padding: 56px 5%; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-card img { height: 250px; }
+      .feature { grid-template-columns: 1fr; padding: 52px 5%; gap: 28px; }
+      .feature img { height: 270px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">GOOD COFFEE · FRESHLY BAKED · ALWAYS WELCOME</div>
+  <header>
+    <a class="brand" href="#home" aria-label="Little Fern Café home">little fern<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#story">Our story</a>
+      <a href="#menu">Menu</a>
+      <a href="#visit">Find us</a>
+      <a class="nav-cta" href="#menu">Explore menu</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">Your little corner of calm</div>
+        <h1>Slow mornings.<br><em>Better coffee.</em></h1>
+        <p>A neighbourhood café for your first coffee, long conversations, and those little moments that make a day feel special.</p>
+        <div class="hero-links">
+          <a class="button" href="#menu">Discover our menu</a>
+          <a class="text-link" href="#story">Get to know us ↗</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85" alt="Warm, inviting café interior with tables and coffee" />
+        <div class="image-note"><strong>Made with a little love</strong>Freshly brewed, every day ☕</div>
+      </div>
+    </section>
+
+    <section class="intro" id="story">
+      <div class="eyebrow">A café with heart</div>
+      <h2>Come for the coffee.<br>Stay for the feeling.</h2>
+      <p>We believe the best things are simple: good beans, fresh bakes, kind people, and a cosy seat waiting just for you. Welcome to your happy place.</p>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">A few favourites</div>
+          <h2>Made to make you smile.</h2>
+        </div>
+        <p>From your everyday espresso to a sweet little treat, there’s something lovely waiting on the menu.</p>
+      </div>
+      <div class="menu-grid">
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=85" alt="Freshly prepared iced coffee in a glass" loading="lazy" />
+          <div class="menu-content">
+            <div class="menu-title"><h3>Brown Sugar Latte</h3><span class="price">₹180</span></div>
+            <p>Rich espresso, silky milk, and a hint of caramel sweetness.</p>
+          </div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85" alt="Freshly baked golden pastries" loading="lazy" />
+          <div class="menu-content">
+            <div class="menu-title"><h3>Butter Croissant</h3><span class="price">₹140</span></div>
+            <p>Flaky, golden, buttery layers baked fresh for your morning.</p>
+          </div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85" alt="Chocolate cake topped with chocolate frosting" loading="lazy" />
+          <div class="menu-content">
+            <div class="menu-title"><h3>Chocolate Cloud Cake</h3><span class="price">₹220</span></div>
+            <p>Soft, rich chocolate cake for when you need a little joy.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="feature">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=85" alt="Barista preparing a freshly brewed cup of coffee" loading="lazy" />
+      <div>
+        <div class="eyebrow">Thoughtfully brewed</div>
+        <h2>Good beans.<br>Good people.<br>Good days.</h2>
+        <p>Every cup starts with carefully chosen coffee and ends with a reason to take one more sip. Pull up a chair—we’ll put the kettle on.</p>
+        <a class="button" href="#visit">Come say hello</a>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="eyebrow">Your table is waiting</div>
+      <h2>Meet you over coffee?</h2>
+      <p>Drop by for a quick takeaway or make yourself comfortable for a while. We’re always happy to see you.</p>
+      <a class="button" href="mailto:hello@littleferncafe.example">Say hello ✉</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a class="brand" href="#home">little fern<span>.</span></a>
+      <small>© <span id="year"></span> Little Fern Café · Made for good moments.</small>
+      <small>Mon–Sun · 8:00 AM – 9:00 PM</small>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
