@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: website
-          image: docker.io/boobesh2005/fluxcd-gitops-image-automation:3b196e7
+          image: docker.io/boobesh2005/fluxcd-gitops-image-automation:01ec3aa
           ports:
             - containerPort: 80
